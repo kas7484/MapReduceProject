@@ -1,0 +1,2 @@
+
+python3 q2.py -r hadoop --hadoop-streaming-jar /home2/hadoop-3.3.2/share/hadoop/tools/lib/hadoop-streaming-3.3.2.jar --jobconf mapred.reduce.tasks=4 hdfs:///datasets/wap  --output-dir retail_info --no-output
