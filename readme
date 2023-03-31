@@ -1,0 +1,51 @@
+MapReduce
+
+Overview
+
+This project contains the code for two MapReduce functions that perform various data processing tasks. The functions are implemented using MrJob, a MapReduce framework for Python.
+
+Functions
+
+word_length_distribution
+The word_length_distribution function processes the "War and Peace" dataset in HDF format located in /datasets/wap. The goal of this function is to understand the word length distribution in the dataset. The function takes each combination of letter and number, and returns a key-value pair where the key has the form "(letter, length)" and the value is the number of words having that length and first letter appearing in the input text.
+
+For example, if the input is:
+
+bash
+Copy code
+The cat in the hat has
+two fish
+The output would look like (ordering of lines and punctuation is not important):
+
+scss
+Copy code
+(T, 3)    1
+(c, 3)    1
+(i, 2)    1
+(t, 3)    2
+(h, 3)    2
+(f, 4)    1
+The code for this function is located in the mrhw/q1 directory.
+
+retail_sales_analysis
+The retail_sales_analysis function processes the retail dataset located in HDFS at /datasets/retail. The dataset contains records of customer purchases including item descriptions, quantity, and unit price. This function calculates the total quantity and amount spent for each item in each country. The function returns a key-value pair where the key is a tuple of the form "(country, stock code)" and the value is a tuple of the form "(quantity, amount spent)".
+
+For example, if there is an output line that looks like "(UK, lederhosen) (1, 32)", it means that only one person in the UK bought lederhosen, and the total spent on lederhosen in the UK was 32.
+
+Some of the descriptions in the dataset contain commas, so the function uses the csv package to properly parse those lines. The code for parsing a line is as follows:
+
+python
+Copy code
+import csv
+parts = list(csv.reader([line]))[0]
+The code for this function is located in the mrhw/q2 directory.
+
+efficient_word_length_distribution
+The efficient_word_length_distribution function is an optimized version of the word_length_distribution function. It leverages the concepts and techniques covered in Advanced MapReduce to improve the performance of the function. The input and output formats of this function are the same as the word_length_distribution function.
+
+The code for this function is located in the mrhw/q1_but_better directory.
+
+efficient_retail_sales_analysis
+The efficient_retail_sales_analysis function is an optimized version of the retail_sales_analysis function. It leverages the concepts and techniques covered in Advanced MapReduce to improve the performance of the function. The input and output formats of this function are the same as the retail_sales_analysis function.
+
+The code for this function is located in the mrhw/q2_but_better directory.
